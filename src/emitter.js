@@ -1,5 +1,5 @@
 export default class EventEmitter {
-  constructor(object) {
+  constructor() {
     // Create callback stack
     this._events = {};
   }
@@ -8,7 +8,7 @@ export default class EventEmitter {
   on(event, cb) {
 
     // Push callback
-    (this._events['$' + event] = this._events['$' + event] || []).push(cb);
+    (this._events[`$${event}`] = this._events[`$${event}`] || []).push(cb);
 
     return this;
   }
@@ -38,14 +38,14 @@ export default class EventEmitter {
     }
 
     // Get callbacks of an event
-    let callbacks = this._events['$' + event];
+    let callbacks = this._events[`$${event}`];
     if (!callbacks) {
       return this;
     }
 
     // Remove all callbacks of a specific event
     if (arguments.length === 1) {
-      delete this._events['$' + event];
+      delete this._events[`$${event}`];
       return this;
     }
 
@@ -66,7 +66,7 @@ export default class EventEmitter {
 
     // Get callbacks of an event
     let callbacks;
-    if (!(callbacks = this._events['$' + event])) {
+    if (!(callbacks = this._events[`$${event}`])) {
       return this;
     }
 
@@ -83,7 +83,7 @@ export default class EventEmitter {
 
   // Return all callbacks attached to an event
   listeners(event) {
-    return this._events['$' + event] || [];
+    return this._events[`$${event}`] || [];
   }
 
   // Return a boolean if the event has listeners
