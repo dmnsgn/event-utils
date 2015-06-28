@@ -1,6 +1,6 @@
 {
   "name": "event-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An event utils system written in ES2015.",
   "main": "src/index.js",
   "directories": {
