@@ -18,7 +18,7 @@ import { EventEmitter } from 'EventUtils'
 let emitter = new EventEmitter();
 ```
 
-#### on()
+#### on(event, cb)
 ```javascript
 function callback1(arg) {
   console.log('callback1 called', arg);
@@ -26,7 +26,7 @@ function callback1(arg) {
 emitter.on('foo', callback1);
 ```
 
-#### once()
+#### once(event, cb)
 ```javascript
 function callbackOnce() {
   console.log('callback called once');
@@ -34,7 +34,7 @@ function callbackOnce() {
 emitter.once('foo', callbackOnce);
 ```
 
-#### off()
+#### off(event, cb)
 ```javascript
 // Remove all listeners
 emitter.off();
@@ -46,13 +46,25 @@ emitter.off('foo');
 emitter.off(callback1);
 ```
 
-#### emit()
+#### emit(event, ...args)
 ```javascript
 // With arguments
 emitter.emit('foo', 'arg');
 
 // Without arguments
 emitter.emit('foo');
+```
+
+#### listeners(event)
+```javascript
+// Return all callbacks attached to an event
+emitter.listeners('foo');
+```
+
+#### hasListeners(event)
+```javascript
+// Return a boolean if the event has listeners
+emitter.hasListeners('foo');
 ```
 
 ## Build
