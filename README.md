@@ -1,7 +1,7 @@
 event-utils
 =========================
 
-> An event utils system written in ES2015.
+> An event utils system written in ES6.
 
 ## Install
 ```bash
