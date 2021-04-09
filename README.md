@@ -73,7 +73,104 @@ emitter.emit("foo");
 
 <!-- api-start -->
 
-Auto-generated API content.
+<a name="EventEmitter"></a>
+
+## EventEmitter
+
+An event utils system written in ES6.
+
+**Kind**: global class
+
+- [EventEmitter](#EventEmitter)
+  - [new EventEmitter()](#new_EventEmitter_new)
+  - [.on(event, cb)](#EventEmitter+on) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+  - [.once(event, cb)](#EventEmitter+once) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+  - [.off(event, cb)](#EventEmitter+off) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+  - [.emit(event, ...cbs)](#EventEmitter+emit) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+  - [.listeners(event)](#EventEmitter+listeners) ⇒ <code>Array.&lt;function()&gt;</code>
+  - [.hasListeners(event)](#EventEmitter+hasListeners) ⇒ <code>boolean</code>
+
+<a name="new_EventEmitter_new"></a>
+
+### new EventEmitter()
+
+Creates an instance of EventEmitter.
+
+<a name="EventEmitter+on"></a>
+
+### eventEmitter.on(event, cb) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+
+Add callback to event
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param | Type                  |
+| ----- | --------------------- |
+| event | <code>string</code>   |
+| cb    | <code>function</code> |
+
+<a name="EventEmitter+once"></a>
+
+### eventEmitter.once(event, cb) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+
+Add callback to event and remove on first call
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param | Type                  |
+| ----- | --------------------- |
+| event | <code>string</code>   |
+| cb    | <code>function</code> |
+
+<a name="EventEmitter+off"></a>
+
+### eventEmitter.off(event, cb) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+
+Remove callback from event
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param | Type                  |
+| ----- | --------------------- |
+| event | <code>string</code>   |
+| cb    | <code>function</code> |
+
+<a name="EventEmitter+emit"></a>
+
+### eventEmitter.emit(event, ...cbs) ⇒ [<code>EventEmitter</code>](#EventEmitter)
+
+Emit an event with arguments
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param  | Type                |
+| ------ | ------------------- |
+| event  | <code>string</code> |
+| ...cbs | <code>args</code>   |
+
+<a name="EventEmitter+listeners"></a>
+
+### eventEmitter.listeners(event) ⇒ <code>Array.&lt;function()&gt;</code>
+
+Return all callbacks attached to an event
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param | Type                |
+| ----- | ------------------- |
+| event | <code>string</code> |
+
+<a name="EventEmitter+hasListeners"></a>
+
+### eventEmitter.hasListeners(event) ⇒ <code>boolean</code>
+
+Return a boolean if the event has listeners
+
+**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)
+
+| Param | Type                |
+| ----- | ------------------- |
+| event | <code>string</code> |
 
 <!-- api-end -->
 
