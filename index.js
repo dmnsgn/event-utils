@@ -1,21 +1,37 @@
-export default class EventEmitter {
+/**
+ * An event utils system written in ES6.
+ */
+class EventEmitter {
+  /**
+   * Creates an instance of EventEmitter.
+   */
   constructor() {
     // Create callback stack
     this._events = {};
   }
 
-  // On
+  /**
+   * Add callback to event
+   *
+   * @param {string} event
+   * @param {Function} cb
+   * @returns {EventEmitter}
+   */
   on(event, cb) {
-
     // Push callback
     (this._events[`$${event}`] = this._events[`$${event}`] || []).push(cb);
 
     return this;
   }
 
-  // Once
+  /**
+   * Add callback to event and remove on first call
+   *
+   * @param {string} event
+   * @param {Function} cb
+   * @returns {EventEmitter}
+   */
   once(event, cb) {
-
     // Remove listener after callback
     let that = this;
     function fn() {
@@ -28,9 +44,14 @@ export default class EventEmitter {
     return this;
   }
 
-  // Off
+  /**
+   * Remove callback from event
+   *
+   * @param {string} event
+   * @param {Function} cb
+   * @returns {EventEmitter}
+   */
   off(event, cb) {
-
     // Remove all listeners
     if (arguments.length === 0) {
       this._events = {};
@@ -61,9 +82,14 @@ export default class EventEmitter {
     return this;
   }
 
-  // Emit an event with arguments
+  /**
+   * Emit an event with arguments
+   *
+   * @param {string} event
+   * @param {...args} cbs
+   * @returns {EventEmitter}
+   */
   emit(event, ...args) {
-
     // Get callbacks of an event
     let callbacks;
     if (!(callbacks = this._events[`$${event}`])) {
@@ -81,14 +107,25 @@ export default class EventEmitter {
     return this;
   }
 
-  // Return all callbacks attached to an event
+  /**
+   * Return all callbacks attached to an event
+   *
+   * @param {string} event
+   * @returns {Function[]}
+   */
   listeners(event) {
     return this._events[`$${event}`] || [];
   }
 
-  // Return a boolean if the event has listeners
+  /**
+   * Return a boolean if the event has listeners
+   *
+   * @param {string} event
+   * @returns {boolean}
+   */
   hasListeners(event) {
-    return !! this.listeners(event).length;
+    return !!this.listeners(event).length;
   }
+}
 
-};
+export default EventEmitter;
