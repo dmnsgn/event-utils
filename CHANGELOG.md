@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [2.1.0](https://github.com/dmnsgn/event-utils/compare/v2.0.1...v2.1.0) (2021-09-10)
+
+
+### Features
+
+* add exports field to package.json ([5d432b3](https://github.com/dmnsgn/event-utils/commit/5d432b367c74b46c686e1dcd56cb93f4254a7368))
+
+
+
 ## [2.0.1](https://github.com/dmnsgn/event-utils/compare/v2.0.0...v2.0.1) (2021-04-09)
 
 
