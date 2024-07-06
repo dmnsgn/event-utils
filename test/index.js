@@ -1,5 +1,5 @@
-import sinon from "sinon";
-import { assert } from "chai";
+import { describe, it, beforeEach, mock } from "node:test";
+import assert from "node:assert";
 
 import EventEmitter from "../index.js";
 
@@ -21,32 +21,32 @@ describe("#EventEmitter()", function () {
 
   describe("#emit()", function () {
     it("should invoke the callback", function () {
-      let callback = sinon.spy();
+      const callback = mock.fn();
 
       emitter.on("foo", callback);
       emitter.emit("foo");
 
-      sinon.assert.calledOnce(callback);
+      assert.strictEqual(callback.mock.calls.length, 1);
     });
 
     it("should invoke the callback with one argument", function () {
-      let callback = sinon.spy();
+      const callback = mock.fn();
 
       emitter.on("foo", callback);
       emitter.emit("foo", "bar");
 
-      sinon.assert.calledOnce(callback);
-      sinon.assert.calledWith(callback, "bar");
+      assert.strictEqual(callback.mock.calls.length, 1);
+      assert.deepStrictEqual(callback.mock.calls[0].arguments, ["bar"]);
     });
 
     it("should invoke the callback with passed arguments", function () {
-      let callback = sinon.spy();
+      const callback = mock.fn();
 
       emitter.on("foo", callback);
       emitter.emit("foo", "bar", "baz");
 
-      sinon.assert.calledOnce(callback);
-      sinon.assert.calledWith(callback, "bar", "baz");
+      assert.strictEqual(callback.mock.calls.length, 1);
+      assert.deepStrictEqual(callback.mock.calls[0].arguments, ["bar", "baz"]);
     });
 
     it("should invoke all callbacks attached to one event", function () {
@@ -60,6 +60,10 @@ describe("#EventEmitter()", function () {
       assert(callbacks.length === 3, "All callbacks are called");
     });
 
+    it("should emit even with no callbacks attached", function () {
+      emitter.emit("foo");
+    });
+
     it("should invoke all callbacks after one has been remove", function () {
       let callbacks = [];
       let callbackToRemove = () => callbacks.push("R");
@@ -70,7 +74,7 @@ describe("#EventEmitter()", function () {
       emitter.on("foo", () => callbacks.push(2));
       assert(
         emitter.listeners("foo").length === 4,
-        "All callbacks are attached to foo"
+        "All callbacks are attached to foo",
       );
 
       emitter.off("foo", callbackToRemove);
@@ -78,7 +82,7 @@ describe("#EventEmitter()", function () {
 
       assert(
         callbacks.length === 3,
-        "All callbacks are called after one is removed"
+        "All callbacks are called after one is removed",
       );
     });
 
@@ -88,6 +92,12 @@ describe("#EventEmitter()", function () {
       emitter.on("foo", () => callbacks.push(0));
       emitter.on("foo", () => callbacks.push(1));
       emitter.on("foo", () => callbacks.push(2));
+      emitter.off("foo");
+
+      assert(!emitter.hasListeners("foo"), "Callback stack length is 0");
+    });
+
+    it("should remove all callbacks even with no listener", function () {
       emitter.off("foo");
 
       assert(!emitter.hasListeners("foo"), "Callback stack length is 0");
@@ -103,29 +113,29 @@ describe("#EventEmitter()", function () {
 
       assert(
         emitter.listeners("foo").length === 1,
-        "Callback stack length is 1"
+        "Callback stack length is 1",
       );
     });
   });
 
   describe("#listener()", function () {
     it("should return one callback", function () {
-      let callback = sinon.spy();
+      const callback = mock.fn();
       emitter.on("foo", callback);
 
       assert(
         emitter.listeners("foo").length === 1,
-        "Callback stack length is 1"
+        "Callback stack length is 1",
       );
     });
     it("should return two callbacks", function () {
-      let callback = sinon.spy();
+      const callback = mock.fn();
       emitter.on("foo", callback);
       emitter.on("foo", callback);
 
       assert(
         emitter.listeners("foo").length === 2,
-        "Callback stack length is 2"
+        "Callback stack length is 2",
       );
     });
   });
