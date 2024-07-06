@@ -1,6 +1,6 @@
 {
   "name": "event-utils",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An event utils system written in ES6.",
   "keywords": [
     "es2015",
@@ -11,7 +11,10 @@
   ],
   "homepage": "https://github.com/dmnsgn/event-utils",
   "bugs": "https://github.com/dmnsgn/event-utils/issues",
-  "repository": "dmnsgn/event-utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmnsgn/event-utils.git"
+  },
   "funding": [
     {
       "type": "individual",
